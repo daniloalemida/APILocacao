@@ -32,11 +32,13 @@ namespace Locacao.Controllers
 
         [HttpPost]
         //[Authorize(Roles = "Operator")]
-         public async Task<IActionResult> Create(Veiculo veiculo)
+        public async Task<IActionResult> Create(Veiculo veiculo)
         {
-            var car = _rep.GetByPlaca(veiculo.Placa);
+            var car = await _rep.GetByPlaca(veiculo.Placa);
 
-            if (car != null)
+            try
+            {
+                if (car == null)
             {
                 var veiculoCad = new Veiculo
                 {
@@ -44,22 +46,28 @@ namespace Locacao.Controllers
                     ValorDiaria = veiculo.ValorDiaria,
                     CapacidadeTanqueCombustivel = veiculo.CapacidadeTanqueCombustivel,
                     CapacidadePortaMalas = veiculo.CapacidadePortaMalas,
-                    Marca = veiculo.Marca,
-                    Modelo = veiculo.Modelo,
+                    IdMarca = veiculo.IdMarca,
+                    IdModelo = veiculo.IdModelo,
                     Ano = veiculo.Ano,
-                    Categoria = veiculo.Categoria,
-                    Combustivel = veiculo.Combustivel,
                     FotoVeiculo = veiculo.FotoVeiculo,
                     IdAgencia = veiculo.IdAgencia,
                     CarroDisponivel = true
                 };
 
-                var retorno = await _rep.Create(veiculoCad);
-                return Ok(retorno);
+                return Ok(await _rep.Create(veiculo));
             }
             else{
                 return Ok("Veiculo já cadastrado!");
             }
+                
+            }
+            catch (System.Exception ex)
+            {
+                return Ok(ex.Message);                
+                
+            }
+
+            
         }
 
         [HttpPut]

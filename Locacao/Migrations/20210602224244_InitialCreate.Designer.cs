@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Locacao.Migrations
 {
     [DbContext(typeof(EntityContext))]
-    [Migration("20210602021336_InitialCreate")]
+    [Migration("20210602224244_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -316,22 +316,16 @@ namespace Locacao.Migrations
                     b.Property<bool>("CarroDisponivel")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Categoria")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Combustivel")
-                        .HasColumnType("int");
-
                     b.Property<string>("FotoVeiculo")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("IdAgencia")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MarcaId")
+                    b.Property<int>("IdMarca")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ModeloId")
+                    b.Property<int>("IdModelo")
                         .HasColumnType("int");
 
                     b.Property<string>("Placa")
@@ -341,10 +335,6 @@ namespace Locacao.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MarcaId");
-
-                    b.HasIndex("ModeloId");
 
                     b.ToTable("Veiculo");
                 });
@@ -389,21 +379,6 @@ namespace Locacao.Migrations
                     b.Navigation("LocalDevolucao");
 
                     b.Navigation("Veiculo");
-                });
-
-            modelBuilder.Entity("Locacao.Domain.Entities.Veiculo.Veiculo", b =>
-                {
-                    b.HasOne("Locacao.Domain.Entities.Veiculo.MarcaVeiculo", "Marca")
-                        .WithMany()
-                        .HasForeignKey("MarcaId");
-
-                    b.HasOne("Locacao.Domain.Entities.Veiculo.ModeloVeiculo", "Modelo")
-                        .WithMany()
-                        .HasForeignKey("ModeloId");
-
-                    b.Navigation("Marca");
-
-                    b.Navigation("Modelo");
                 });
 #pragma warning restore 612, 618
         }

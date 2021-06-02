@@ -162,11 +162,9 @@ namespace Locacao.Migrations
                     ValorDiaria = table.Column<double>(type: "float", nullable: false),
                     CapacidadeTanqueCombustivel = table.Column<int>(type: "int", nullable: false),
                     CapacidadePortaMalas = table.Column<int>(type: "int", nullable: false),
-                    MarcaId = table.Column<int>(type: "int", nullable: true),
-                    ModeloId = table.Column<int>(type: "int", nullable: true),
+                    IdMarca = table.Column<int>(type: "int", nullable: false),
+                    IdModelo = table.Column<int>(type: "int", nullable: false),
                     Ano = table.Column<int>(type: "int", nullable: false),
-                    Categoria = table.Column<int>(type: "int", nullable: false),
-                    Combustivel = table.Column<int>(type: "int", nullable: false),
                     FotoVeiculo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CarroDisponivel = table.Column<bool>(type: "bit", nullable: false),
                     IdAgencia = table.Column<int>(type: "int", nullable: false)
@@ -174,18 +172,6 @@ namespace Locacao.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Veiculo", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Veiculo_MarcaVeiculo_MarcaId",
-                        column: x => x.MarcaId,
-                        principalTable: "MarcaVeiculo",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Veiculo_ModeloVeiculo_ModeloId",
-                        column: x => x.ModeloId,
-                        principalTable: "ModeloVeiculo",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -244,16 +230,6 @@ namespace Locacao.Migrations
                 name: "IX_Aluguel_VeiculoId",
                 table: "Aluguel",
                 column: "VeiculoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Veiculo_MarcaId",
-                table: "Veiculo",
-                column: "MarcaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Veiculo_ModeloId",
-                table: "Veiculo",
-                column: "ModeloId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -266,6 +242,12 @@ namespace Locacao.Migrations
 
             migrationBuilder.DropTable(
                 name: "Devolucao");
+
+            migrationBuilder.DropTable(
+                name: "MarcaVeiculo");
+
+            migrationBuilder.DropTable(
+                name: "ModeloVeiculo");
 
             migrationBuilder.DropTable(
                 name: "Operadores");
@@ -281,12 +263,6 @@ namespace Locacao.Migrations
 
             migrationBuilder.DropTable(
                 name: "Veiculo");
-
-            migrationBuilder.DropTable(
-                name: "MarcaVeiculo");
-
-            migrationBuilder.DropTable(
-                name: "ModeloVeiculo");
         }
     }
 }

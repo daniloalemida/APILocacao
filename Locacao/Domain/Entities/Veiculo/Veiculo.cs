@@ -9,11 +9,9 @@ namespace Locacao.Domain.Entities.Veiculo
         public Double ValorDiaria { get; set; }
         public int CapacidadeTanqueCombustivel { get; set; }
         public int CapacidadePortaMalas { get; set; }
-        public MarcaVeiculo Marca {get; set;}
-        public ModeloVeiculo Modelo {get;set;}
+        public int IdMarca {get; set;}
+        public int IdModelo {get;set;}
         public int Ano { get; set; }
-        public CategoriaVeiculo Categoria { get; set; }
-        public TipoCombustivel Combustivel {get; set;}
         public string FotoVeiculo {get; set;}
         public bool CarroDisponivel { get; set; }
         public int IdAgencia { get; set; }
