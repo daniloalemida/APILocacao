@@ -35,7 +35,7 @@ namespace Locacao
             services.AddScoped<ICheckListRepositorio, CheckListRepositorio>();
             services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
             services.AddScoped<IDevolucaoRepositorio, DevolucaoRepositorio>();
-            services.AddScoped<IAluguelService, AluguelService>();
+            services.AddScoped<IAluguelService, AluguelServico>();
             services.AddScoped<ICriptografarServico, CriptografarServico>();
             services.AddScoped<IOperadorRepositorio, OperadorRepositorio>();
             services.AddScoped<IMarcaVeiculoRepositorio, MarcaVeiculoRepositorio>();
@@ -44,7 +44,8 @@ namespace Locacao
             services.AddScoped<IRetiradaVeiculoRepositorio, RetiradaVeiculoRepositorio>();
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<ITokenService, TokenService>();
-            
+            services.AddScoped<IAluguelRepositorio, AluguelRepositorio>();
+            services.AddScoped<IAluguelService, AluguelServico>();            
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

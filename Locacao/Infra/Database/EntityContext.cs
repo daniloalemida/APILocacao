@@ -22,6 +22,10 @@ namespace Locacao.Infra.Database
         public DbSet<ModeloVeiculo> ModeloVeiculo { get; set; }
         public DbSet<Veiculo> Veiculo { get; set; }
         public DbSet<Agencia> Agencia { get; set; }
+        public DbSet<DevolucaoVeiculo> Devolucao { get; set;}
+        public DbSet<RetiradaVeiculo> Retirada { get; set;}        
+        public DbSet<Aluguel> Aluguel { get; set;}
+        public DbSet<CheckList> CheckLists { get; set; }
         
     }
 }

@@ -4,8 +4,8 @@ namespace Locacao
 {
     public class RetiradaVeiculo : Entity
     {
-        public CheckList CheckListDevolucao { get; set; }
-        public int IdOperario { get; set; }
+        public int IdCheckListRetirada { get; set; }
+        public int IdOperador { get; set; }
         public int IdAluguel { get; set; }
         
     }

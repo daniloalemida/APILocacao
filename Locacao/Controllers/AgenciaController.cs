@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Locacao.Domain.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Locacao.Controllers
@@ -23,7 +24,7 @@ namespace Locacao.Controllers
         }
 
         [HttpGet("{id}")]
-        //[Authorize(Roles = "Operator")]
+        [Authorize(Roles = "Operator")]
         public async Task<IActionResult> GetById(int id)
         {
             return Ok(await _rep.GetById(id));
@@ -48,7 +49,6 @@ namespace Locacao.Controllers
         //[Authorize(Roles = "Operator")]
         public async Task<IActionResult> Delete(int id){
             return Ok(await _rep.Delete(id));
-        }
-        
+        }        
     }
 }

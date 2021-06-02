@@ -10,8 +10,8 @@ namespace Locacao.Domain.Interfaces
         
         Task<Object> CriarReserva(Aluguel reserva);
 
-        Task<Object> Devolucao(Aluguel reserva, CheckList checklist);
+        Task<Object> Devolucao(int idreserva, int checklist, int id);
 
-        Task<Object> Retirada(Aluguel reserva, CheckList checklist);         
+        Task<Object> Retirada(int idreserva, int checklist, int id);         
     }
 }
